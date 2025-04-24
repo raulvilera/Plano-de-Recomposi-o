@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Plano de Recomposição - Prova Paulista</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      background-color: #343a40; /* cinza escuro */
+      padding: 10px 40px 40px 40px;
+      color: #212529;
+    }
+
+    .container {
+      background-color: #e0f0ff; /* azul claro */
+      border: 1px solid #ced4da;
+      padding: 20px;
+      margin-bottom: 1cm;
+      border-radius: 8px;
+      box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    h3 {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    .input-block {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-align: left;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 20px;
+      font-size: 12px;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      background-color: #ffffff;
+      color: #212529;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    textarea {
+      height: 160px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      margin-top: 8px;
+    }
+
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: normal;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #212529;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto 0 auto;
+      padding: 10px 30px;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 5px #0056b3;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:active {
+      box-shadow: none;
+      transform: translateY(3px);
+    }
+
+    .success-message {
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="recomposicaoForm" onsubmit="handleSubmit(event)">
+    <div class="container">
+      <h2>Plano de Recomposição das Aprendizagens - Prova Paulista 1º Bimestre</h2>
+
+      <div class="input-block">
+        <label>Ano/Série:</label>
+        <input type="text" name="serie" required>
+      </div>
+
+      <div class="input-block">
+        <label>Professor(a) / Disciplina:</label>
+        <input type="text" name="professor" required>
+      </div>
+
+      <div class="input-block">
+        <label>Participação:</label>
+        <input type="text" name="participacao">
+      </div>
+
+      <div class="input-block">
+        <label>Acertos:</label>
+        <input type="text" name="acertos">
+      </div>
+
+      <div class="input-block">
+        <label>Evolução:</label>
+        <input type="text" name="evolucao">
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>I – Diagnóstico</h3>
+
+      <div class="input-block">
+        <label>Habilidades Prioritárias (com menor desempenho):</label>
+        <textarea name="diagnostico"></textarea>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>II – Planejamento</h3>
+
+      <div class="input-block">
+        <label>1. Estratégias de Ensino:</label>
+        <textarea name="estrategias"></textarea>
+      </div>
+
+      <div class="input-block">
+        <label>2. Uso de Materiais Pedagógicos?</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="materiais" value="Material digital do Componente"> Material digital do Componente</label>
+          <label><input type="checkbox" name="materiais" value="Livro do Estudante"> Livro do Estudante “Currículo em Ação”</label>
+          <label><input type="checkbox" name="materiais" value="Ferramenta digital"> Ferramenta digital</label>
+          <label><input type="checkbox" name="materiais" value="Outros"> Outros</label>
+        </div>
+      </div>
+
+      <div class="input-block">
+        <label>3. Momento de Recomposição:</label>
+        <textarea name="momento"></textarea>
+      </div>
+
+      <div class="input-block">
+        <label>4. Prazo Estimado para Recompor as Habilidades:</label>
+        <textarea name="prazo"></textarea>
+      </div>
+    </div>
+
+    <div class="container">
+      <h3>III – Avaliação</h3>
+
+      <div class="input-block">
+        <label>Análise dos Resultados:</label>
+        <textarea name="avaliacao"></textarea>
+      </div>
+
+      <div class="input-block">
+        <label>Anotações:</label>
+        <textarea name="anotacoes"></textarea>
+      </div>
+
+      <button type="submit">Enviar</button>
+      <div class="success-message" id="successMessage">Formulário enviado com sucesso!</div>
+    </div>
+  </form>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      document.getElementById('successMessage').style.display = 'block';
+      // Aqui você pode integrar com Apps Script / Google Sheets / Google Docs se desejar
+    }
+  </script>
+
+</body>
+</html>
