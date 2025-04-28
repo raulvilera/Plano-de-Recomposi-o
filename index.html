@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Plano de Recomposição - Prova Paulista</title>
   <style>
-    /* Seu CSS anterior continua igual */
     body {
       font-family: Arial, sans-serif;
       font-size: 12px;
@@ -75,7 +74,7 @@
     input[type="checkbox"] {
       margin-right: 8px;
     }
-    .button-primary, .button-nav {
+    .button-primary, .button-clear {
       display: inline-block;
       margin: 10px 5px;
       padding: 10px 20px;
@@ -92,7 +91,7 @@
       text-decoration: none;
       text-align: center;
     }
-    .button-primary:active, .button-nav:active {
+    .button-primary:active, .button-clear:active {
       box-shadow: none;
       transform: translateY(3px);
     }
@@ -107,15 +106,15 @@
       margin-top: 20px;
       display: none;
     }
+    .button-clear {
+      background-color: #dc3545;
+    }
+    .button-clear:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 <body>
-
-<!-- Botões de navegação (UNDO/REDO) -->
-<div class="button-group">
-  <button type="button" class="button-nav" onclick="undo()">&#8592; Voltar</button>
-  <button type="button" class="button-nav" onclick="redo()">Avançar &#8594;</button>
-</div>
 
 <form id="recomposicaoForm" onsubmit="handleSubmit(event)">
   <div class="container">
@@ -209,55 +208,16 @@
   </div>
 </form>
 
+<!-- Botão Limpar no canto inferior esquerdo -->
+<div style="position: fixed; bottom: 20px; left: 20px;">
+  <button type="button" class="button-clear" onclick="clearForm()">Limpar Campos</button>
+</div>
+
 <script>
-  // Histórico dos estados do formulário
-  let historyStack = [];
-  let redoStack = [];
-
-  function saveState() {
+  function clearForm() {
     const form = document.getElementById('recomposicaoForm');
-    const data = new FormData(form);
-    let obj = {};
-    data.forEach((value, key) => obj[key] = value);
-    historyStack.push(JSON.stringify(obj));
-    redoStack = []; // Sempre que novo estado salvo, limpa redo
+    form.reset(); // Limpa todos os campos do formulário
   }
-
-  function undo() {
-    if (historyStack.length > 1) {
-      redoStack.push(historyStack.pop());
-      restoreState(historyStack[historyStack.length - 1]);
-    }
-  }
-
-  function redo() {
-    if (redoStack.length > 0) {
-      const state = redoStack.pop();
-      historyStack.push(state);
-      restoreState(state);
-    }
-  }
-
-  function restoreState(state) {
-    const form = document.getElementById('recomposicaoForm');
-    const obj = JSON.parse(state);
-    for (const [key, value] of Object.entries(obj)) {
-      const field = form.elements[key];
-      if (field) {
-        if (field.type === "checkbox") {
-          field.checked = value === 'on';
-        } else {
-          field.value = value;
-        }
-      }
-    }
-  }
-
-  // Escutar mudanças para salvar estado
-  document.getElementById('recomposicaoForm').addEventListener('input', saveState);
-
-  // Inicializa primeiro estado
-  window.addEventListener('load', saveState);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -273,8 +233,6 @@
       document.getElementById('successMessage').textContent = data;
       document.getElementById('successMessage').style.display = 'block';
       form.reset();
-      historyStack = [];
-      redoStack = [];
     })
     .catch(error => {
       alert("Erro ao enviar o formulário: " + error);
