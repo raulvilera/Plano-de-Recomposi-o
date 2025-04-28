@@ -112,14 +112,6 @@
     .button-clear:hover {
       background-color: #c82333;
     }
-
-    /* Posicionando o botão Limpar no canto inferior esquerdo */
-    .button-clear-container {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      z-index: 1000;
-    }
   </style>
 </head>
 <body>
@@ -217,7 +209,7 @@
 </form>
 
 <!-- Botão Limpar no canto inferior esquerdo -->
-<div class="button-clear-container">
+<div style="position: fixed; bottom: 20px; left: 20px;">
   <button type="button" class="button-clear" onclick="clearForm()">Limpar Campos</button>
 </div>
 
