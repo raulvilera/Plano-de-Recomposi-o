@@ -4,13 +4,10 @@
   <meta charset="UTF-8">
   <title>Plano de Recomposição - Prova Paulista</title>
   <style>
-    body, input[type="text"], textarea, label, h2, h3 {
-      line-height: 1.0;
-    }
-
     body {
       font-family: Arial, sans-serif;
       font-size: 12px;
+      line-height: 1.1;
       background-color: #343a40;
       padding: 10px 40px 40px 40px;
       color: #212529;
@@ -56,16 +53,16 @@
     }
 
     input[type="text"],
-    textarea {
+    textarea,
+    input[type="file"] {
       width: 100%;
-      padding: 20px;
+      padding: 10px;
       font-size: 12px;
       border: 1px solid #dee2e6;
       border-radius: 4px;
       background-color: #ffffff;
-      color: #0033A0; /* Azul Bic nas respostas */
+      color: #212529;
       box-sizing: border-box;
-      line-height: 1.0;
     }
 
     textarea {
@@ -90,10 +87,10 @@
       margin-right: 8px;
     }
 
-    button {
-      display: block;
-      margin: 20px auto 0 auto;
-      padding: 10px 30px;
+    .button-primary, .button-nav {
+      display: inline-block;
+      margin: 10px 5px;
+      padding: 10px 20px;
       font-size: 12px;
       font-weight: bold;
       text-transform: uppercase;
@@ -104,11 +101,18 @@
       box-shadow: 0 5px #0056b3;
       cursor: pointer;
       transition: all 0.2s ease;
+      text-decoration: none;
+      text-align: center;
     }
 
-    button:active {
+    .button-primary:active, .button-nav:active {
       box-shadow: none;
       transform: translateY(3px);
+    }
+
+    .button-group {
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     .success-message {
@@ -121,6 +125,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Botões de navegação -->
+  <div class="button-group">
+    <button type="button" class="button-nav" onclick="history.back()">&#8592; Voltar</button>
+    <button type="button" class="button-nav" onclick="history.forward()">Avançar &#8594;</button>
+  </div>
 
   <form id="recomposicaoForm" onsubmit="handleSubmit(event)">
     <div class="container">
@@ -172,9 +182,9 @@
       <div class="input-block">
         <label>2. Uso de Materiais Pedagógicos?</label>
         <div class="checkbox-group">
-          <label><input type="checkbox" name="materiais" value="Material digital do Componente"> Material digital do Componente</label><br>
-          <label><input type="checkbox" name="materiais" value="Livro do Estudante"> Livro do Estudante “Currículo em Ação”</label><br>
-          <label><input type="checkbox" name="materiais" value="Ferramenta digital"> Ferramenta digital</label><br>
+          <label><input type="checkbox" name="materiais" value="Material digital do Componente"> Material digital do Componente</label>
+          <label><input type="checkbox" name="materiais" value="Livro do Estudante"> Livro do Estudante “Currículo em Ação”</label>
+          <label><input type="checkbox" name="materiais" value="Ferramenta digital"> Ferramenta digital</label>
           <label><input type="checkbox" name="materiais" value="Outros"> Outros</label>
         </div>
       </div>
@@ -187,6 +197,9 @@
       <div class="input-block">
         <label>4. Prazo Estimado para Recompor as Habilidades:</label>
         <textarea name="prazo"></textarea>
+        <br><br>
+        <label>Enviar Documento (opcional):</label>
+        <input type="file" name="documentoPrazo">
       </div>
     </div>
 
@@ -203,7 +216,10 @@
         <textarea name="anotacoes"></textarea>
       </div>
 
-      <button type="submit">Enviar</button>
+      <div style="text-align: center;">
+        <button type="submit" class="button-primary">Enviar</button>
+      </div>
+
       <div class="success-message" id="successMessage">Formulário enviado com sucesso!</div>
     </div>
   </form>
