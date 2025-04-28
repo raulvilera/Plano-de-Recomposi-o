@@ -112,6 +112,14 @@
     .button-clear:hover {
       background-color: #c82333;
     }
+
+    /* Posicionando o botão Limpar no canto inferior esquerdo */
+    .button-clear-container {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
   </style>
 </head>
 <body>
@@ -132,17 +140,17 @@
 
     <div class="input-block">
       <label>Participação:</label>
-      <input type="text" name="participacao">
+      <input type="text" name="participacao" required>
     </div>
 
     <div class="input-block">
       <label>Acertos:</label>
-      <input type="text" name="acertos">
+      <input type="text" name="acertos" required>
     </div>
 
     <div class="input-block">
       <label>Evolução:</label>
-      <input type="text" name="evolucao">
+      <input type="text" name="evolucao" required>
     </div>
   </div>
 
@@ -151,7 +159,7 @@
 
     <div class="input-block">
       <label>Habilidades Prioritárias (com menor desempenho):</label>
-      <textarea name="diagnostico"></textarea>
+      <textarea name="diagnostico" required></textarea>
     </div>
   </div>
 
@@ -160,27 +168,27 @@
 
     <div class="input-block">
       <label>1. Estratégias de Ensino:</label>
-      <textarea name="estrategias"></textarea>
+      <textarea name="estrategias" required></textarea>
     </div>
 
     <div class="input-block">
       <label>2. Uso de Materiais Pedagógicos?</label>
       <div class="checkbox-group">
-        <label><input type="checkbox" name="materiais" value="Material digital do Componente"> Material digital do Componente</label>
-        <label><input type="checkbox" name="materiais" value="Livro do Estudante"> Livro do Estudante “Currículo em Ação”</label>
-        <label><input type="checkbox" name="materiais" value="Ferramenta digital"> Ferramenta digital</label>
-        <label><input type="checkbox" name="materiais" value="Outros"> Outros</label>
+        <label><input type="checkbox" name="materiais" value="Material digital do Componente" required> Material digital do Componente</label>
+        <label><input type="checkbox" name="materiais" value="Livro do Estudante" required> Livro do Estudante “Currículo em Ação”</label>
+        <label><input type="checkbox" name="materiais" value="Ferramenta digital" required> Ferramenta digital</label>
+        <label><input type="checkbox" name="materiais" value="Outros" required> Outros</label>
       </div>
     </div>
 
     <div class="input-block">
       <label>3. Momento de Recomposição:</label>
-      <textarea name="momento"></textarea>
+      <textarea name="momento" required></textarea>
     </div>
 
     <div class="input-block">
       <label>4. Prazo Estimado para Recompor as Habilidades:</label>
-      <textarea name="prazo"></textarea>
+      <textarea name="prazo" required></textarea>
       <br><br>
       <label>Enviar Documento (opcional):</label>
       <input type="file" name="documentoPrazo">
@@ -192,12 +200,12 @@
 
     <div class="input-block">
       <label>Análise dos Resultados:</label>
-      <textarea name="avaliacao"></textarea>
+      <textarea name="avaliacao" required></textarea>
     </div>
 
     <div class="input-block">
       <label>Anotações:</label>
-      <textarea name="anotacoes"></textarea>
+      <textarea name="anotacoes" required></textarea>
     </div>
 
     <div style="text-align: center;">
@@ -209,7 +217,7 @@
 </form>
 
 <!-- Botão Limpar no canto inferior esquerdo -->
-<div style="position: fixed; bottom: 20px; left: 20px;">
+<div class="button-clear-container">
   <button type="button" class="button-clear" onclick="clearForm()">Limpar Campos</button>
 </div>
 
